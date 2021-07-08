@@ -1,0 +1,9 @@
+.DS_Store
+/.idea/
+/.vscode/
+/.git/
+/coverage/
+/vendor/
+/.env.local
+/.env.local.php
+/.env.*.local
