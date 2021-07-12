@@ -10,5 +10,6 @@ return [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
         '@App' => '@app',
+        '@js' => '@app/public/js'
     ],
 ];

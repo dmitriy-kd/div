@@ -5,5 +5,8 @@ return [
         'request' => [
             'cookieValidationKey' => $_SERVER['APP_SECRET'] ?? '',
         ],
+        'user' => [
+            'identityClass' => 'App\Models\User'
+        ]
     ]
 ];

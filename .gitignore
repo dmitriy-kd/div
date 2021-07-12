@@ -7,3 +7,5 @@
 /.env.local
 /.env.local.php
 /.env.*.local
+
+tests/_output/*

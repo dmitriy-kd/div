@@ -1,33 +1,40 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Controller;
 
+use Yii;
 use yii\web;
+use App\Models\Forms\FeedbackForm;
 
 class DefaultController extends web\Controller
 {
     public function actionIndex()
     {
-        $data = [
-            ['id' => 1, 'name' => 'name 1'],
-            ['id' => 2, 'name' => 'name 2'],
-            ['id' => 100, 'name' => 'name 100'],
-        ];
+        $feedbackModel = new FeedbackForm();
 
-        $provider = new \yii\data\ArrayDataProvider(
-            [
-                'allModels' => $data,
-                'pagination' => [
-                    'pageSize' => 10,
-                ],
-                'sort' => [
-                    'attributes' => ['id', 'name'],
-                ],
-            ]
-        );
+        if (Yii::$app->request->isPost) {
 
-        return $this->render('index', ['dataProvider' => $provider]);
+            if ($feedbackModel->load(Yii::$app->request->post()) && $feedbackModel->validate()) {
+
+                if ($feedbackModel->save()) {
+                    Yii::$app->session->setFlash('success', 'Обращение отправлено');
+                } else {
+                    Yii::$app->session->setFlash('warning', 'Произошла ошибка, попробуйте позже');
+                }
+
+                return $this->refresh();
+
+            } else {
+
+                $errors = $feedbackModel->errors;
+                Yii::$app->session->setFlash('danger', $errors);
+                return $this->refresh();
+            }
+
+        }
+
+        return $this->render('index', [
+            'feedbackModel' => $feedbackModel
+        ]);
     }
 }
