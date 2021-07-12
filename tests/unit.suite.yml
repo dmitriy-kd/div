@@ -5,5 +5,8 @@
 class_name: UnitTester
 modules:
     enabled:
+        - Yii2:
+            part: [init, fixtures]
+            configFile: '\config\config.php'
         - Asserts
         - \Helper\Unit

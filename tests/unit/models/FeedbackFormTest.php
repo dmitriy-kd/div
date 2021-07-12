@@ -1,11 +1,11 @@
 <?php
 
-namespace models;
+namespace App\tests\unit\models;
 
 use Yii;
 use App\Models\Feedback;
 use App\Models\Forms\FeedbackForm;
-use tests\fixtures\FeedbackFixture;
+use App\tests\fixtures\FeedbackFixture;
 
 class FeedbackFormTest extends \Codeception\TestCase\Test
 {
